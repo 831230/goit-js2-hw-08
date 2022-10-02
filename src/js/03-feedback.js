@@ -11,16 +11,16 @@ if (localStorage.getItem(localstorageKey)) {
     feedbackForm.elements.message.value=JSON.parse(messageInStorage).message;
 };
 
-feedbackForm.addEventListener("input",function(evt){
+function setObjectToLocalstorage (evt){
   evt.preventDefault();
   const formObject={
     email:feedbackForm.elements.email.value,
     message:feedbackForm.elements.message.value
   };
   localStorage.setItem(localstorageKey,JSON.stringify(formObject));
-})
+};
 
-feedbackForm.addEventListener("submit",function(evt){
+function formHandling(evt){
   evt.preventDefault();
   const formObject={
     email:feedbackForm.elements.email.value,
@@ -29,4 +29,7 @@ feedbackForm.addEventListener("submit",function(evt){
   console.log(formObject);
   feedbackForm.reset();
   localStorage.clear()
-})
+};
+
+feedbackForm.addEventListener("input", setObjectToLocalstorage);
+feedbackForm.addEventListener("submit", formHandling);
