@@ -31,5 +31,5 @@ function formHandling(evt){
   localStorage.clear()
 };
 
-feedbackForm.addEventListener("input", setObjectToLocalstorage);
+feedbackForm.addEventListener("input", throttle(setObjectToLocalstorage,500));
 feedbackForm.addEventListener("submit", formHandling);
